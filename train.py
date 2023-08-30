@@ -64,7 +64,7 @@ def submission_generate(val_loader, model, opt):
     device = opt.device
     out_list = []
     with torch.no_grad():
-        for idx, (image,bio_tensor) in (enumerate(val_loader)):
+        for idx, image in (enumerate(val_loader)):
 
             images = image.float().to(device)
 
@@ -123,7 +123,7 @@ def main():
         train_supervised(train_loader, model, criterion, optimizer, epoch, opt)
 
     submission_generate(test_loader, model, opt)
-    sample_evaluation(test_loader, model, opt)
+    # sample_evaluation(test_loader, model, opt)
 
     save_file = os.path.join(
         opt.save_folder, 'last.pth')
